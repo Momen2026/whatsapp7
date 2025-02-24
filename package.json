@@ -1,0 +1,17 @@
+{
+  "name": "whatsapp-bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@adiwajshing/baileys": "^1.14.0",
+    "chalk": "^4.1.0",
+    "readline-sync": "^1.4.10",
+    "node-fetch": "^2.6.7",
+    "ytdl-core": "^4.11.2",
+    "@hapi/boom": "^10.0.0"
+  }
+}
