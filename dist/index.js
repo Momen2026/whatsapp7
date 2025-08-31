@@ -18,10 +18,13 @@ async function onResolve(ctx) {
 
     const { title, url } = data.result;
 
-    // إرسال اسم الفيديو + رابط التحميل
+    // استخراج الامتداد من رابط التحميل
+    const extension = url.split('.').pop().split('?')[0] || "mp4";
+
+    // إرسال اسم الفيديو الحقيقي مع الامتداد
     ctx.resolve({
-      title: `🎬 ${title}`,
-      url: url
+      title: `${title}.${extension}`,  // اسم واضح للفيديو
+      url: `${url}?filename=${encodeURIComponent(title)}.${extension}` // خدعة لإجبار التطبيق على استخدام الاسم
     });
 
   } catch (err) {
