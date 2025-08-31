@@ -2,25 +2,30 @@ async function onResolve(ctx) {
   try {
     const videoUrl = ctx.url;
 
-    // استدعاء API
+    // تحقق إن الرابط فعلاً من يوتيوب
+    if (!videoUrl.includes("youtube.com") && !videoUrl.includes("youtu.be")) {
+      throw new Error("الرابط ليس من يوتيوب");
+    }
+
+    // استدعاء API لتحويل الرابط إلى رابط تحميل مباشر
     const apiUrl = `https://apis.davidcyriltech.my.id/youtube/mp4?url=${encodeURIComponent(videoUrl)}`;
     const res = await fetch(apiUrl);
     const data = await res.json();
 
-    if (!data || !data.status || !data.result) {
-      throw new Error("Failed to fetch video info");
+    if (!data?.status || !data?.result?.url || !data?.result?.title) {
+      throw new Error("فشل في استخراج معلومات الفيديو");
     }
 
-    const result = data.result;
+    const { title, url } = data.result;
 
-    // نرسل اسم الفيديو + الرابط فقط
+    // إرسال اسم الفيديو + رابط التحميل
     ctx.resolve({
-      title: result.title, // اسم الفيديو
-      url: result.url      // رابط التحميل المباشر
+      title: `🎬 ${title}`,
+      url: url
     });
 
   } catch (err) {
-    ctx.reject(err.message);
+    ctx.reject(`❌ ${err.message}`);
   }
 }
 
