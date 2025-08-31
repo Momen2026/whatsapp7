@@ -1,8 +1,9 @@
 async function onResolve(ctx) {
   try {
     const videoUrl = ctx.url;
-    const apiUrl = `https://apis.davidcyriltech.my.id/youtube/mp4?url=${encodeURIComponent(videoUrl)}`;
 
+    // استدعاء API
+    const apiUrl = `https://apis.davidcyriltech.my.id/youtube/mp4?url=${encodeURIComponent(videoUrl)}`;
     const res = await fetch(apiUrl);
     const data = await res.json();
 
@@ -12,10 +13,10 @@ async function onResolve(ctx) {
 
     const result = data.result;
 
+    // نرسل اسم الفيديو + الرابط فقط
     ctx.resolve({
-      title: result.title,
-      url: result.url,
-      thumbnail: result.thumbnail
+      title: result.title, // اسم الفيديو
+      url: result.url      // رابط التحميل المباشر
     });
 
   } catch (err) {
