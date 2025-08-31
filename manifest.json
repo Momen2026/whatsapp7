@@ -1,0 +1,22 @@
+{
+  "name": "youtube-downloader",
+  "author": "YourName",
+  "title": "YouTube Downloader",
+  "description": "Download YouTube videos via API",
+  "icon": "",
+  "version": "1.0.0",
+  "homepage": "",
+  "repository": {
+    "url": "https://github.com/YourName/youtube-downloader-ext"
+  },
+  "scripts": [
+    {
+      "event": "onResolve",
+      "match": {
+        "urls": ["*://*.youtube.com/*", "*://youtu.be/*"]
+      },
+      "entry": "dist/index.js"
+    }
+  ],
+  "settings": []
+}
