@@ -1,0 +1,18 @@
+{
+  "name": "gopeed-extension-youtube",
+  "version": "1.0.0",
+  "description": "YouTube video downloader extension for Gopeed",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "babel-loader": "^9.1.3",
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.3"
+  }
+}
